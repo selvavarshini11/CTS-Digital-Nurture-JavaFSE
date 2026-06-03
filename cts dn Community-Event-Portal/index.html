@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local Community Event Portal">
+  <title>CityPulse — Community Event Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo">City<span>Pulse</span></a>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#register">Register</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="help.html" target="_blank" class="nav-help">Help ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Home -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div id="welcomeBanner">
+      <p class="welcome-eyebrow">Welcome back, <span id="userName">Resident</span> 👋</p>
+      <h1>Your City.<br>Your <em>Events.</em></h1>
+      <p class="hero-sub">Discover, register, and connect with community events happening right around the corner.</p>
+      <p class="special-offer">
+        🎉 <span style="color:#ff4d4d; font-weight:700;">LIMITED OFFER:</span>
+        <span class="highlight">Free registration this weekend!</span>
+      </p>
+      <div class="hero-cta">
+        <a href="#events" class="btn btn-primary">Explore Events</a>
+        <a href="#register" class="btn btn-outline">Register Now</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" id="statEvents">0</span><span>Events</span></div>
+      <div class="stat"><span class="stat-num" id="statResidents">0</span><span>Residents</span></div>
+      <div class="stat"><span class="stat-num" id="statCategories">0</span><span>Categories</span></div>
+    </div>
+  </div>
+  <div class="geo-bar">
+    <button id="geoBtn" class="btn btn-geo">📍 Find Nearby Events</button>
+    <p id="geoResult" class="geo-result"></p>
+  </div>
+</section>
+
+<!-- Events -->
+<section id="events">
+  <div class="section-header">
+    <h2>Upcoming <span class="accent">Events</span></h2>
+    <p>Filter and explore what's happening in your neighbourhood</p>
+  </div>
+  <div class="filter-bar">
+    <input type="text" id="searchInput" placeholder="🔍 Search events..." class="search-input"/>
+    <select id="categoryFilter" class="filter-select">
+      <option value="all">All Categories</option>
+      <option value="music">🎵 Music</option>
+      <option value="workshop">🛠 Workshop</option>
+      <option value="sports">⚽ Sports</option>
+      <option value="food">🍕 Food</option>
+      <option value="art">🎨 Art</option>
+    </select>
+    <select id="locationFilter" class="filter-select">
+      <option value="all">All Locations</option>
+      <option value="central-park">Central Park</option>
+      <option value="town-hall">Town Hall</option>
+      <option value="community-center">Community Center</option>
+      <option value="riverside">Riverside</option>
+    </select>
+  </div>
+  <div id="eventGrid" class="event-grid">
+    <div class="loading-cards">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+  <div class="load-more-wrap">
+    <button id="loadMoreBtn" class="btn btn-outline">Load More Events</button>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="section-header">
+    <h2>Event <span class="accent">Highlights</span></h2>
+    <p>Memories from past community events — double-click to enlarge</p>
+  </div>
+  <div class="gallery-wrapper">
+    <table class="gallery-table">
+      <caption>Community Event Photo Gallery</caption>
+      <tbody>
+        <tr>
+          <td>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=280&fit=crop"
+                   alt="Summer Music Festival" title="Summer Music Festival 2024"
+                   class="gallery-img" ondblclick="enlargeImage(this)">
+              <figcaption>Summer Music Fest</figcaption>
+            </figure>
+          </td>
+          <td>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=280&fit=crop"
+                   alt="Baking Workshop" title="Baking Workshop 2024"
+                   class="gallery-img" ondblclick="enlargeImage(this)">
+              <figcaption>Baking Workshop</figcaption>
+            </figure>
+          </td>
+          <td>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?w=400&h=280&fit=crop"
+                   alt="Community 5K Run" title="Community 5K Run 2024"
+                   class="gallery-img" ondblclick="enlargeImage(this)">
+              <figcaption>Community 5K Run</figcaption>
+            </figure>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=280&fit=crop"
+                   alt="Food Festival" title="Food Festival 2024"
+                   class="gallery-img" ondblclick="enlargeImage(this)">
+              <figcaption>Food Festival</figcaption>
+            </figure>
+          </td>
+          <td>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=280&fit=crop"
+                   alt="Art Exhibition" title="Art Exhibition 2024"
+                   class="gallery-img" ondblclick="enlargeImage(this)">
+              <figcaption>Art Exhibition</figcaption>
+            </figure>
+          </td>
+          <td>
+            <figure>
+              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=280&fit=crop"
+                   alt="Open Air Cinema" title="Open Air Cinema 2024"
+                   class="gallery-img" ondblclick="enlargeImage(this)">
+              <figcaption>Open Air Cinema</figcaption>
+            </figure>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  </div>
+</section>
+
+<!-- Promo Animation -->
+<section id="video-section">
+  <div class="section-header">
+    <h2>Watch Our <span class="accent">Promo</span></h2>
+  </div>
+  <div class="video-wrap">
+    <div id="promoCanvas" style="
+      width:100%; height:420px; border-radius:12px;
+      border:2px solid #c7d4f0;
+      box-shadow:0 20px 60px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      position:relative; overflow:hidden; cursor:pointer;">
+
+      <!-- Animated background particles -->
+      <canvas id="particleCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+
+      <!-- Top label -->
+      <div style="position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);
+                  font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.2em;
+                  color:rgba(255,255,255,0.4); text-transform:uppercase; z-index:2;">
+        CityPulse Community Events
+      </div>
+
+      <!-- Main event name display -->
+      <div id="promoEventName" style="
+        position:absolute; inset:0; display:flex; flex-direction:column;
+        align-items:center; justify-content:center; z-index:2; text-align:center; padding:2rem;">
+        <div id="promoEmoji" style="font-size:3.5rem; margin-bottom:1rem; transition:all 0.5s ease;"></div>
+        <div id="promoTitle" style="
+          font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem);
+          font-weight:900; color:#ffffff; letter-spacing:-1px;
+          text-shadow:0 0 40px rgba(230,92,0,0.8), 0 4px 20px rgba(0,0,0,0.5);
+          transition:all 0.5s ease;"></div>
+        <div id="promoSub" style="
+          font-family:'DM Sans',sans-serif; font-size:1rem; color:rgba(255,255,255,0.6);
+          margin-top:0.75rem; letter-spacing:0.05em; transition:all 0.5s ease;"></div>
+      </div>
+
+      <!-- Progress dots -->
+      <div id="promoDots" style="
+        position:absolute; bottom:1.5rem; left:50%; transform:translateX(-50%);
+        display:flex; gap:0.5rem; z-index:2;"></div>
+
+      <!-- Play/Pause button -->
+      <button id="promoToggleBtn" onclick="togglePromo()" style="
+        position:absolute; top:1.5rem; right:1.5rem; z-index:3;
+        background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+        color:#fff; width:36px; height:36px; border-radius:50%;
+        font-size:0.85rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+        transition:all 0.2s;">⏸</button>
+    </div>
+    <p id="videoStatus" class="video-status">🎬 Now playing...</p>
+  </div>
+</section>
+
+<!-- Registration Form -->
+<section id="register">
+  <div class="section-header">
+    <h2>Event <span class="accent">Registration</span></h2>
+    <p>Reserve your spot at upcoming community events</p>
+  </div>
+  <div class="form-container">
+    <form id="registrationForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName"
+                 placeholder="e.g. Priya Sharma" required autofocus
+                 oninput="clearError('fullName')">
+          <span class="field-error" id="err-fullName"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email"
+                 placeholder="you@example.com" required
+                 oninput="clearError('email')">
+          <span class="field-error" id="err-email"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone"
+                 placeholder="10-digit mobile number"
+                 onblur="validatePhone(this)">
+          <span class="field-error" id="err-phone"></span>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Preferred Date *</label>
+          <input type="date" id="eventDate" name="eventDate" required
+                 oninput="clearError('eventDate')">
+          <span class="field-error" id="err-eventDate"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="eventType">Event Type *</label>
+          <select id="eventType" name="eventType" required
+                  onchange="showEventFee(this.value)">
+            <option value="">— Select an event —</option>
+            <option value="music">🎵 Music Concert — ₹200</option>
+            <option value="workshop">🛠 Workshop — ₹500</option>
+            <option value="sports">⚽ Sports Day — Free</option>
+            <option value="food">🍕 Food Festival — ₹150</option>
+            <option value="art">🎨 Art Exhibition — ₹100</option>
+          </select>
+          <span class="field-error" id="err-eventType"></span>
+        </div>
+        <div class="form-group fee-display" id="feeDisplay" style="display:none;">
+          <label>Registration Fee</label>
+          <div class="fee-badge" id="feeBadge">—</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Additional Message</label>
+        <textarea id="message" name="message"
+                  placeholder="Any special requirements..."
+                  rows="4" onkeyup="countChars(this)"></textarea>
+        <span class="char-count" id="charCount">0 / 300 characters</span>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="savePrefs" name="savePrefs">
+        <label for="savePrefs">Remember my event preference for next visit</label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" id="submitBtn" class="btn btn-primary" onclick="handleSubmit(event)">
+          ✅ Register Now
+        </button>
+        <button type="button" class="btn btn-outline" onclick="clearPreferences()">
+          🗑 Clear Saved Preferences
+        </button>
+      </div>
+      <output id="formOutput" class="form-output" for="registrationForm"></output>
+    </form>
+  </div>
+</section>
+
+<!-- Feedback -->
+<section id="feedback">
+  <div class="section-header">
+    <h2>Share Your <span class="accent">Feedback</span></h2>
+    <p>Help us improve community events</p>
+  </div>
+  <div class="feedback-container">
+    <form id="feedbackForm" novalidate>
+      <div class="form-group">
+        <label for="feedbackEvent">Which event did you attend?</label>
+        <select id="feedbackEvent" onchange="showSelectedFee(this)">
+          <option value="">— Select event —</option>
+          <option value="music" data-fee="₹200">🎵 Music Concert</option>
+          <option value="workshop" data-fee="₹500">🛠 Workshop</option>
+          <option value="sports" data-fee="Free">⚽ Sports Day</option>
+          <option value="food" data-fee="₹150">🍕 Food Festival</option>
+        </select>
+        <p id="selectedFeeInfo" class="fee-info"></p>
+      </div>
+      <div class="rating-group">
+        <label>Your Rating</label>
+        <div class="stars" id="starRating">
+          <span class="star" onclick="setRating(1)">★</span>
+          <span class="star" onclick="setRating(2)">★</span>
+          <span class="star" onclick="setRating(3)">★</span>
+          <span class="star" onclick="setRating(4)">★</span>
+          <span class="star" onclick="setRating(5)">★</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="feedbackText">Your Feedback *</label>
+        <textarea id="feedbackText" rows="5"
+                  placeholder="Tell us about your experience..."
+                  onkeyup="countFeedbackChars(this)"></textarea>
+        <span class="char-count" id="fbCharCount">0 / 500 characters</span>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="submitFeedback()">
+        Submit Feedback
+      </button>
+      <div id="feedbackOutput" class="form-output"></div>
+    </form>
+  </div>
+</section>
+
+<!-- News Bulletin -->
+<section id="news">
+  <div class="section-header">
+    <h2>Community <span class="accent">Bulletin</span></h2>
+  </div>
+  <div class="news-columns">
+    <article>
+      <h3>🏆 Sports Day Recap</h3>
+      <p>Last Saturday's Community Sports Day brought together over 400 residents at Riverside Park. Participants of all ages competed in friendly races, tug-of-war, and cricket matches. Winners received trophies and gift vouchers sponsored by local businesses.</p>
+    </article>
+    <article>
+      <h3>🎨 Art Exhibition Opens</h3>
+      <p>The annual Local Art Exhibition opened its doors at Town Hall Gallery this week. Featuring over 80 works by emerging artists from the neighbourhood, this year's theme is "Urban Roots." The exhibition runs until the end of the month and admission is free for residents under 18.</p>
+    </article>
+    <article>
+      <h3>🍕 Food Festival Highlights</h3>
+      <p>The Food Festival drew record crowds this year with 60+ stalls representing cuisines from across the globe. Community favourites won top honours. Next year's festival is already being planned — applications for vendors open next month.</p>
+    </article>
+    <article>
+      <h3>🎵 Concert Coming Soon</h3>
+      <p>The City Council has confirmed the Summer Music Concert for the last weekend of next month at Central Park. Local bands will take the stage over two evenings. Registration opens this Friday — seats are limited so early sign-up is encouraged.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Admin Table -->
+<section id="admin-table">
+  <div class="section-header">
+    <h2>Events <span class="accent">Overview</span></h2>
+    <p>Current registration status for all upcoming events</p>
+  </div>
+  <div class="table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Event Name</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Seats Left</th>
+          <th>Fee</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="logo">City<span>Pulse</span></p>
+      <p>Connecting residents with their community since 2020.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="help.html" target="_blank">Help</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>📧 hello@citypulse.in</p>
+      <p>📞 044-1234-5678</p>
+      <p>📍 Chennai, Tamil Nadu</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 CityPulse Community Portal — CTS Assignment: HTML5 + CSS3 + JavaScript</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
